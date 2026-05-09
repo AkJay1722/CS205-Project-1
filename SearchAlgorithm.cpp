@@ -45,7 +45,7 @@ void SearchAlgorithm::print_solution_path(Node* goal_node) {
         curr = curr->parent;
     }
 
-    cout << "\n!!Goal!!\n" << endl;
+    cout << "\n[[Goal!]]\n" << endl;
     cout << "Solution Path:" << endl;
     int depth = path.size() - 1;
 

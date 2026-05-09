@@ -26,7 +26,7 @@ class Puzzle {
         int initial_state[3][3];
         int goal_state[3][3] = { {1,2,3}, {4,5,6}, {7,8,0} };
         int calc_misplaced_tiles(int board[3][3]);
-        int calc_euclidean_dist(int board[3][3]);
+        int calc_manhattan_dist(int board[3][3]);
         map<int, pair<int, int>> goal_coordinates;
 };
 

@@ -66,17 +66,17 @@ vector<Operand> Puzzle::get_operands(Node* node) {
     return operands;
 }
 
-//calculates the heuristic value based on the selected heuristic type
+// Heuristic value based on the selected heuristic type
 int Puzzle::heuristic_value(int board[3][3], int heuristic_type) {
     if (heuristic_type == 2) { // misplaced tiles heuristic
         return calc_misplaced_tiles(board);
     } else if (heuristic_type == 3) { // euclidean distance heuristic
-        return calc_euclidean_dist(board);
+        return calc_manhattan_dist(board);
     }
     return 0;
 }
 
-//calculates the misplaced tiles heuristic for the board
+// Misplaced tiles heuristic for the board
 int Puzzle::calc_misplaced_tiles(int board[3][3]) {
     int misplaced_sum = 0;
     for (int i = 0; i < 3; i++) {
@@ -89,26 +89,26 @@ int Puzzle::calc_misplaced_tiles(int board[3][3]) {
     return misplaced_sum;
 }
 
-//calculates the euclidean distance heuristic for the board
-int Puzzle::calc_euclidean_dist(int board[3][3]) {
-    double total_distance = 0.0;
+// Manhattan distance heuristic for the board
+int Puzzle::calc_manhattan_dist(int board[3][3]) {
+    int total_distance = 0.0;
     int current_tileVal = 0;
     
-    // iterate through each tile in the board
-    for (int i = 0; i < 3; i++) { //for each row
-        for (int j = 0; j < 3; j++) { //for each column
+    // Iterate through every tile
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
             current_tileVal = board[i][j];
-            if (current_tileVal != 0) { //skip blank tile
-                // get coordinates where this tile *should* be
+            if (current_tileVal != 0) { // Skip blank tile
+                // Get coordinates where this tile should be
                 pair<int, int> goal_position = goal_coordinates[current_tileVal];
-                int goal_row = goal_position.first;  // use .first of tuple
-                int goal_col = goal_position.second; // use .second of tuple
+                int goal_row = goal_position.first;
+                int goal_col = goal_position.second;
 
-                // calculate euclidean distance, add to total
-                total_distance += sqrt(pow(i - goal_row, 2) + pow(j - goal_col, 2));
+                // Calculate Manhattan distance, add to total
+                total_distance += (i - goal_row) + (j - goal_col);
             }
         }
     }
     // Return the value h(n)
-    return static_cast<int>(round(total_distance)); 
+    return total_distance; 
 }

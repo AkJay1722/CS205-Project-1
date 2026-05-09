@@ -35,7 +35,7 @@ int main() {
     cout << "Enter the desired algorithm or heuristic:" << endl;
     cout << "1. Uniform Cost Search" << endl;
     cout << "2. A* with the Misplaced Tile heuristic" << endl;
-    cout << "3. A* with the Euclidean Distance heuristic" << endl;
+    cout << "3. A* with the Manhattan Distance heuristic" << endl;
     int algorithm_choice;
     cin >> algorithm_choice;
 
@@ -49,7 +49,7 @@ int main() {
     else if (algorithm_choice == 2) { // A* with Misplaced Tile (2)
         search.solve(problem, 2);
     }
-    else if (algorithm_choice == 3) { // A* with Euclidean Distance (3)
+    else if (algorithm_choice == 3) { // A* with Manhattan Distance (3)
         search.solve(problem, 3);
     }
 
